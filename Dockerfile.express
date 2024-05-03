@@ -1,0 +1,20 @@
+# Escolha a imagem de base
+FROM node:14
+
+# Criar diretório de trabalho
+WORKDIR /src
+
+# Instalar dependências
+# O arquivo package.json E package-lock.json são copiados
+COPY package*.json ./
+
+RUN npm install
+
+# Copiar os arquivos do projeto
+COPY . .
+
+# Sua aplicação roda na porta 3001
+EXPOSE 3001
+
+# Comando para rodar a aplicação
+CMD ["node", "src/app.js"]
